@@ -50,7 +50,7 @@ int main()
 	for(i = 0 ; i < c; i++)
 	{
 		scanf("%d %d", &(range[i][0]), &(range[i][1]));
-		for(j = 0; j < n; j++)
+		for(j = 0; j < range[i][0]; j++)
 		{
 			scanf("%d",&(price[i][j]));
 		}
