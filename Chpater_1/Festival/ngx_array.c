@@ -29,8 +29,6 @@ float get_answer(int max, int min, int *prices)
 	int i,total;
 	float answer = 0.0;
 	float cur = 0.0;
-
-	printf("%d\n", *prices);
 	
 	for (i = min; i <= max; i++)
 	{
