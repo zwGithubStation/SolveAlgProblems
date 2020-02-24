@@ -17,7 +17,7 @@ int get_min_total(int cnt, int max, int *prices)
 			cur += prices[j];
 		}
 
-		if (cur < answer)
+		if (cur < answer || i == 0) //first record
 			answer = cur;
 	}
 
@@ -29,11 +29,15 @@ float get_answer(int max, int min, int *prices)
 	int i,total;
 	float answer = 0.0;
 	float cur = 0.0;
+
+	printf("%d\n", *prices);
+	
 	for (i = min; i <= max; i++)
 	{
 		total = get_min_total(i, max, prices);
+		
 		cur = (float)total / (float)i;
-		if (cur < answer)
+		if (cur < answer || i == min) //first record
 			answer = cur;
 	}
 
@@ -65,16 +69,6 @@ int main()
 			printf("\n");
 		}
 	}
-
-	/*test*/
-//	for(i = 0 ; i < 100 ; i++)
-//	{
-//		for(j = 0; j < 1000; j++)
-//		{
-//			printf("%d ",price[i][j]);
-//		}
-//		printf("\n");
-//	}
 	
 	return 0;
 }
