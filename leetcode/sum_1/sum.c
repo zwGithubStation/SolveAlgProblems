@@ -39,7 +39,7 @@ int main()
 	int test_array[10] = {2, 2, 3, 4, 5, 6, 7};
 	int *result = NULL;
 	int returnSize;
-	result = twoSum(test_array, 7, 7, &returnSize))
+	result = twoSum(test_array, 7, 7, &returnSize);
 	printf("%d %d\n", result[0], result[1]);
 	free(result);
 	return 0;
