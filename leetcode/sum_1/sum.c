@@ -20,8 +20,8 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
 		{
 			if (nums[j] == match_right)
 			{
-				result_array[0] = match_left;
-				result_array[1] = match_right;
+				result_array[0] = i;
+				result_array[1] = j;
 				*returnSize = 2;
 				return result_array;
 			}
