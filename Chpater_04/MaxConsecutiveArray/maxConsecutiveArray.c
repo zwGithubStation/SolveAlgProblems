@@ -25,6 +25,7 @@ int getMaxConsecutiveArrayBase(int *str, int lenght, int *start_pos, int *end_po
 			if (cur_sum + str[j] > sum)
 			{
 				sum = cur_sum + str[j];
+				cur_sum = cur_sum + str[j];
 				*start_pos = i;
 				*end_pos = j;
 			}
