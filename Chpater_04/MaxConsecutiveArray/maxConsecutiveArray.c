@@ -57,7 +57,7 @@ int getMaxConsecutiveArrayDP(int *str, int lenght, int start_pos, int end_pos)
 int main()
 {
 	int use_cnt,i,j,sum,start_pos,end_pos;
-	int str[100][100000] = {0};
+	int str[100][10000] = {0};
 	int length[100] = {0};
 	scanf("%d", &use_cnt);
 	for(i = 0 ; i < use_cnt; i++)
