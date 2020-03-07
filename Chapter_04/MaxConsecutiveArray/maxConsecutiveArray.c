@@ -2,57 +2,74 @@
 /*
  * Copyright (C) ZWP
  * Problem: MaxConsecutiveArray Chapter 4, page 78
+   Consideration : 1.partial sum may exceed int-range (ignore)
+   				   2.multi-answer(ignore)
  */
 
 #include <stdio.h>
+#include <limits.h>
 
 //baseline
-int getMaxConsecutiveArray(int *str, int lenght, int start_pos, int end_pos)
+int getMaxConsecutiveArrayBase(int *str, int lenght, int *start_pos, int *end_pos)
 {
-	
+	int i,j;
+	int cur_sum,sum = 0;
+	for (i = 0; i < lenght; i++)
+	{
+		cur_sum = 0;
+		for (j = i; j < lenght; j++)
+		{
+			if (cur_sum + str[j] > sum)
+			{
+				sum = cur_sum + str[j];
+				*start_pos = i;
+				*end_pos = j;
+			}
+		}
+	}
+
+	return sum;
 }
 
 //better
-int getMaxConsecutiveArray(int *str, int lenght, int start_pos, int end_pos)
+int getMaxConsecutiveArrayBetter(int *str, int lenght, int start_pos, int end_pos)
 {
 	
 }
 
 
 //divide-and-conquer
-int getMaxConsecutiveArray(int *str, int lenght, int start_pos, int end_pos)
+int getMaxConsecutiveArrayDAC(int *str, int lenght, int start_pos, int end_pos)
 {
 	
 }
 
 
 //dynamic programming
-int getMaxConsecutiveArray(int *str, int lenght, int start_pos, int end_pos)
+int getMaxConsecutiveArrayDP(int *str, int lenght, int start_pos, int end_pos)
 {
 	
 }
 
 int main()
 {
-	int c,n,l,i,j;
-	int range[100][2] = {0};
-	int price[100][1000] = {0};
-	float output = 0.0;
-	scanf("%d", &c);
-	for(i = 0 ; i < c; i++)
+	int length,use_cnt,i,j,sum,start_pos,end_pos;
+	int str[100][100000] = {0};
+	scanf("%d", &use_cnt);
+	for(i = 0 ; i < use_cnt; i++)
 	{
-		scanf("%d %d", &(range[i][0]), &(range[i][1]));
-		for(j = 0; j < range[i][0]; j++)
+		scanf("%d", &length);
+		for(j = 0; j < length; j++)
 		{
-			scanf("%d",&(price[i][j]));
+			scanf("%d",&(str[i][j]));
 		}
 	}
 
-	for(i = 0 ; i < c; i++)
+	for(i = 0; i < use_cnt; i++)
 	{
-		output = get_answer(range[i][0], range[i][1], &(price[i][0]));
-		printf("%.10f", output);
-		if(i != c-1)
+		sum = getMaxConsecutiveArrayBase(str[i], strlen(str), &start_pos, &end_pos);
+		printf("%d %d %d", sum, start_pos, end_pos);
+		if(i != use_cnt-1)
 		{
 			printf("\n");
 		}
