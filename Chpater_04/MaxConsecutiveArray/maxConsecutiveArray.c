@@ -16,16 +16,23 @@
 int getMaxConsecutiveArrayBase(int *str, int lenght, int *start_pos, int *end_pos)
 {
 	int i,j;
-	int cur_sum,sum = 0;
+	int cur_sum,sum = INT_MIN;
 	for (i = 0; i < lenght; i++)
 	{
-		cur_sum = 0;
-		for (j = i; j < lenght; j++)
+		if (sum < str[i])
 		{
-			if (cur_sum + str[j] > sum)
+			sum = str[i];
+			*start_pos = i;
+			*end_pos = i;
+		}
+		cur_sum = str[i];
+		
+		for (j = i+1; j < lenght; j++)
+		{
+			cur_sum = cur_sum + str[j];
+			if (cur_sum > sum)
 			{
-				sum = cur_sum + str[j];
-				cur_sum = cur_sum + str[j];
+				sum = cur_sum;
 				*start_pos = i;
 				*end_pos = j;
 			}
