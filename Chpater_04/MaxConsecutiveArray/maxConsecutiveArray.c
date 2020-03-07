@@ -70,7 +70,7 @@ int main()
 
 	for(i = 0; i < use_cnt; i++)
 	{
-		sum = getMaxConsecutiveArrayBase(str[i], strlen(str), &start_pos, &end_pos);
+		sum = getMaxConsecutiveArrayBase(str[i], strlen(str[i]), &start_pos, &end_pos);
 		printf("%d %d %d", sum, start_pos, end_pos);
 		if(i != use_cnt-1)
 		{
