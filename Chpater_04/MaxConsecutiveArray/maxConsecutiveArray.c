@@ -63,7 +63,7 @@ int main()
 	for(i = 0 ; i < use_cnt; i++)
 	{
 		scanf("%d", &(length[i]));
-		for(j = 0; j < length; j++)
+		for(j = 0; j < length[i]; j++)
 		{
 			scanf("%d",&(str[i][j]));
 		}
