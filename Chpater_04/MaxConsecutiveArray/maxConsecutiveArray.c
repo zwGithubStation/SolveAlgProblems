@@ -58,10 +58,11 @@ int main()
 {
 	int length,use_cnt,i,j,sum,start_pos,end_pos;
 	int str[100][100000] = {0};
+	int length[100] = {0};
 	scanf("%d", &use_cnt);
 	for(i = 0 ; i < use_cnt; i++)
 	{
-		scanf("%d", &length);
+		scanf("%d", &(length[i]));
 		for(j = 0; j < length; j++)
 		{
 			scanf("%d",&(str[i][j]));
@@ -70,7 +71,7 @@ int main()
 
 	for(i = 0; i < use_cnt; i++)
 	{
-		sum = getMaxConsecutiveArrayBase(str[i], strlen(str[i]), &start_pos, &end_pos);
+		sum = getMaxConsecutiveArrayBase(str[i], length[i], &start_pos, &end_pos);
 		printf("%d %d %d", sum, start_pos, end_pos);
 		if(i != use_cnt-1)
 		{
