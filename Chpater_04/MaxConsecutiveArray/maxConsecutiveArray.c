@@ -4,10 +4,13 @@
  * Problem: MaxConsecutiveArray Chapter 4, page 78
    Consideration : 1.partial sum may exceed int-range (ignore)
    				   2.multi-answer(ignore)
+   Compile: gcc -std=c99 -fsanitize=address -fno-omit-frame-pointer -O1 -g maxConsecutiveArray.c
  */
 
 #include <stdio.h>
 #include <limits.h>
+#include <stdlib.h>
+#include <string.h>
 
 //baseline
 int getMaxConsecutiveArrayBase(int *str, int lenght, int *start_pos, int *end_pos)
