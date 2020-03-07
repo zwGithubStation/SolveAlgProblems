@@ -42,12 +42,6 @@ int getMaxConsecutiveArrayBase(int *str, int lenght, int *start_pos, int *end_po
 	return sum;
 }
 
-//better
-int getMaxConsecutiveArrayBetter(int *str, int lenght, int start_pos, int end_pos)
-{
-	
-}
-
 
 //divide-and-conquer
 int getMaxConsecutiveArrayDAC(int *str, int lenght, int start_pos, int end_pos)
