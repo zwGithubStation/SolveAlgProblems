@@ -126,6 +126,7 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end)
 	{
 		//*start_pos = iter_begin;
 		//*end_pos = iter_end;
+		printf("[%d - %d], maxSum:%d\n", iter_begin, iter_end, str[iter_begin]);
 		return str[iter_begin];
 	}
 		
@@ -161,16 +162,20 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end)
 	{
 		//*start_pos = start_temp2;
 		//*end_pos = end_temp2;
+		printf("[%d - %d], maxSum(left no conj):%d\n", iter_begin, iter_end, left_no_conj_max);
 		return left_no_conj_max;
 	}
 	else if (right_no_conj_max >= left_no_conj_max && right_no_conj_max >= left_conj_max + right_conj_max)
 	{
+		printf("[%d - %d], maxSum(right no conj):%d\n", iter_begin, iter_end, right_no_conj_max);
+		return left_no_conj_max;
 		return right_no_conj_max;
 	}
 	else
 	{
 		//*start_pos = start_temp1;
 		//*end_pos = end_temp1;
+		printf("[%d - %d], maxSum(conj):%d\n", iter_begin, iter_end, left_conj_max + right_conj_max);
 		return left_conj_max + right_conj_max;
 	}
 	
