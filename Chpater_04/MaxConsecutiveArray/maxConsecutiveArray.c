@@ -86,10 +86,10 @@ int getMaxConsecutiveArrayDACWithPos(int *str, int iter_begin, int iter_end, int
 		}
 	}
 
-	left_no_conj_max = getMaxConsecutiveArrayDAC(str, iter_begin, mid_pos, start_pos, end_pos);
+	left_no_conj_max = getMaxConsecutiveArrayDACWithPos(str, iter_begin, mid_pos, start_pos, end_pos);
 	start_temp2 = *start_pos;
 	end_temp2 = *end_pos;
-	right_no_conj_max = getMaxConsecutiveArrayDAC(str, mid_pos+1, iter_end, start_pos, end_pos);
+	right_no_conj_max = getMaxConsecutiveArrayDACWithPos(str, mid_pos+1, iter_end, start_pos, end_pos);
 
 	if (left_no_conj_max >= right_no_conj_max && left_no_conj_max >= left_conj_max + right_conj_max)
 	{
