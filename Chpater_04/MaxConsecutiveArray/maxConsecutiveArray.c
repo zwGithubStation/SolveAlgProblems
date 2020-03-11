@@ -209,7 +209,7 @@ int main()
 	{
 		//sum = getMaxConsecutiveArrayBase(str[i], length[i], &start_pos, &end_pos);
 		//sum = getMaxConsecutiveArrayDAC(str[i], 0, length[i]-1);
-		sum = getMaxConsecutiveArrayDACWithPos(str[i], 0, length[i]-1, &start_pos, &end_pos)
+		sum = getMaxConsecutiveArrayDACWithPos(str[i], 0, length[i]-1, &start_pos, &end_pos);
 		printf("maxSum=%d [%d %d]", sum, start_pos, end_pos);
 		if(i != use_cnt-1)
 		{
