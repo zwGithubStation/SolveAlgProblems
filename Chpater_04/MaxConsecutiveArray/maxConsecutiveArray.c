@@ -143,7 +143,7 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end)
 	}
 
 	sum = 0;
-	for (i = mid_pos; i <= iter_end; i++)
+	for (i = mid_pos+1; i <= iter_end; i++)
 	{
 		sum += str[i];
 		if (sum > right_conj_max)
