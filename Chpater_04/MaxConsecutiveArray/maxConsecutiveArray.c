@@ -109,6 +109,72 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end, int *start
 	
 }
 
+int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end)
+{
+	int mid_pos,i;
+	int sum = 0;
+	int left_conj_max = INT_MIN;
+	int right_conj_max = INT_MIN;
+
+	int left_no_conj_max = INT_MIN;
+	int right_no_conj_max = INT_MIN;
+	//int start_temp1,end_temp1,start_temp2,end_temp2,targ;
+	
+	if (iter_begin == iter_end)
+	{
+		//*start_pos = iter_begin;
+		//*end_pos = iter_end;
+		return str[iter_begin];
+	}
+		
+	mid_pos = (iter_begin+iter_end) / 2;
+
+	for (i = mid_pos; i >= 0; i--)
+	{
+		sum += str[i];
+		if (sum > left_conj_max)
+		{
+			//start_temp1 = i;
+			left_conj_max = sum;
+		}
+	}
+
+	sum = 0;
+	for (i = mid_pos; i <= iter_end; i++)
+	{
+		sum += str[i];
+		if (sum > right_conj_max)
+		{
+			//end_temp1 = i;
+			right_conj_max = sum;
+		}
+	}
+
+	left_no_conj_max = getMaxConsecutiveArrayDAC(str, iter_begin, mid_pos);
+	//start_temp2 = *start_pos;
+	//end_temp2 = *end_pos;
+	right_no_conj_max = getMaxConsecutiveArrayDAC(str, mid_pos, iter_end);
+
+	if (left_no_conj_max >= right_no_conj_max && left_no_conj_max >= left_conj_max + right_conj_max)
+	{
+		//*start_pos = start_temp2;
+		//*end_pos = end_temp2;
+		return left_no_conj_max;
+	}
+	else if (right_no_conj_max >= left_no_conj_max && right_no_conj_max >= left_conj_max + right_conj_max)
+	{
+		return right_no_conj_max;
+	}
+	else
+	{
+		//*start_pos = start_temp1;
+		//*end_pos = end_temp1;
+		return left_conj_max + right_conj_max;
+	}
+	
+}
+
+
 
 //dynamic programming
 int getMaxConsecutiveArrayDP(int *str, int lenght, int start_pos, int end_pos)
@@ -136,8 +202,8 @@ int main()
 	for(i = 0; i < use_cnt; i++)
 	{
 		//sum = getMaxConsecutiveArrayBase(str[i], length[i], &start_pos, &end_pos);
-		sum = getMaxConsecutiveArrayDAC(str[i], 0, length[i]-1, &start_pos, &end_pos);
-		printf("%d %d %d", sum, start_pos, end_pos);
+		sum = getMaxConsecutiveArrayDAC(str[i], 0, length[i]-1);
+		printf("%d", sum);
 		if(i != use_cnt-1)
 		{
 			printf("\n");
