@@ -44,6 +44,7 @@ int getMaxConsecutiveArrayBase(int *str, int lenght, int *start_pos, int *end_po
 
 
 //divide-and-conquer
+/*
 int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end, int *start_pos, int *end_pos)
 {
 	int mid_pos,i;
@@ -108,6 +109,7 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end, int *start
 	}
 	
 }
+*/
 
 int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end)
 {
