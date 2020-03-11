@@ -175,7 +175,7 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end)
 	{
 		//*start_pos = start_temp1;
 		//*end_pos = end_temp1;
-		printf("[%d - %d], maxSum(conj):%d\n", iter_begin, iter_end, left_conj_max + right_conj_max);
+		printf("[%d - %d], maxSum(conj):left(%d) right(%d)\n", iter_begin, iter_end, left_conj_max, right_conj_max);
 		return left_conj_max + right_conj_max;
 	}
 	
