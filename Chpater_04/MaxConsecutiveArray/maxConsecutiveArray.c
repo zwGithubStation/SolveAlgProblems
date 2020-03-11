@@ -44,8 +44,8 @@ int getMaxConsecutiveArrayBase(int *str, int lenght, int *start_pos, int *end_po
 
 
 //divide-and-conquer
-/*
-int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end, int *start_pos, int *end_pos)
+
+int getMaxConsecutiveArrayDACWithPos(int *str, int iter_begin, int iter_end, int *start_pos, int *end_pos)
 {
 	int mid_pos,i;
 	int sum = 0;
@@ -65,7 +65,7 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end, int *start
 		
 	mid_pos = (iter_begin+iter_end) / 2;
 
-	for (i = mid_pos; i >= 0; i--)
+	for (i = mid_pos; i >= iter_begin; i--)
 	{
 		sum += str[i];
 		if (sum > left_conj_max)
@@ -76,7 +76,7 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end, int *start
 	}
 
 	sum = 0;
-	for (i = mid_pos; i <= iter_end; i++)
+	for (i = mid_pos+1; i <= iter_end; i++)
 	{
 		sum += str[i];
 		if (sum > right_conj_max)
@@ -89,7 +89,7 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end, int *start
 	left_no_conj_max = getMaxConsecutiveArrayDAC(str, iter_begin, mid_pos, start_pos, end_pos);
 	start_temp2 = *start_pos;
 	end_temp2 = *end_pos;
-	right_no_conj_max = getMaxConsecutiveArrayDAC(str, mid_pos, iter_end, start_pos, end_pos);
+	right_no_conj_max = getMaxConsecutiveArrayDAC(str, mid_pos+1, iter_end, start_pos, end_pos);
 
 	if (left_no_conj_max >= right_no_conj_max && left_no_conj_max >= left_conj_max + right_conj_max)
 	{
@@ -109,7 +109,7 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end, int *start
 	}
 	
 }
-*/
+
 
 int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end)
 {
@@ -168,7 +168,6 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end)
 	else if (right_no_conj_max >= left_no_conj_max && right_no_conj_max >= left_conj_max + right_conj_max)
 	{
 		printf("[%d - %d], maxSum(right no conj):%d\n", iter_begin, iter_end, right_no_conj_max);
-		return left_no_conj_max;
 		return right_no_conj_max;
 	}
 	else
@@ -209,8 +208,9 @@ int main()
 	for(i = 0; i < use_cnt; i++)
 	{
 		//sum = getMaxConsecutiveArrayBase(str[i], length[i], &start_pos, &end_pos);
-		sum = getMaxConsecutiveArrayDAC(str[i], 0, length[i]-1);
-		printf("%d", sum);
+		//sum = getMaxConsecutiveArrayDAC(str[i], 0, length[i]-1);
+		sum = getMaxConsecutiveArrayDACWithPos(str[i], 0, length[i]-1, &start_pos, &end_pos)
+		printf("maxSum=%d [%d %d]", sum, start_pos, end_pos);
 		if(i != use_cnt-1)
 		{
 			printf("\n");
