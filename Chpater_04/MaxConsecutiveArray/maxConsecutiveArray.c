@@ -8,7 +8,7 @@
    solution:
    			 1.baseline 
    			 2.divide-and-conquer
-   			 3.dp/greedy : SumMaxInclude(i) = Max(SumMaxInclude(i-1), 0) + A(i)
+   			 3.dp/greedy : SumMaxInclude(i) = Max(SumMaxInclude(i-1), 0) + A(i); SumMaxRange(i) = Max(SumMaxRange(i-1), SumMaxInclude(i)); we need get SumMaxRange(n)
    Compile: gcc -std=c99 -fsanitize=address -fno-omit-frame-pointer -O1 -g maxConsecutiveArray.c
  */
 
@@ -202,8 +202,6 @@ int getMaxConsecutiveArrayDP(int *str, int length)
 
 	return sum;
 }
-
-
 
 int main()
 {
