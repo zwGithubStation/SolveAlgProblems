@@ -2,8 +2,13 @@
 /*
  * Copyright (C) ZWP
  * Problem: MaxConsecutiveArray Chapter 4, page 78
-   Consideration : 1.partial sum may exceed int-range (ignore)
-   				   2.multi-answer(ignore)
+   Consideration : 
+   			 1.partial sum may exceed int-range (ignore)
+   			 2.multi-answer(ignore)
+   solution:
+   			 1.baseline 
+   			 2.divide-and-conquer
+   			 3.dp/greedy : SumMaxInclude(i) = Max(SumMaxInclude(i-1), 0) + A(i)
    Compile: gcc -std=c99 -fsanitize=address -fno-omit-frame-pointer -O1 -g maxConsecutiveArray.c
  */
 
@@ -54,7 +59,7 @@ int getMaxConsecutiveArrayDACWithPos(int *str, int iter_begin, int iter_end, int
 
 	int left_no_conj_max = INT_MIN;
 	int right_no_conj_max = INT_MIN;
-	int start_temp1,end_temp1,start_temp2,end_temp2,targ;
+	int start_temp1,end_temp1,start_temp2,end_temp2;
 	
 	if (iter_begin == iter_end)
 	{
@@ -181,14 +186,24 @@ int getMaxConsecutiveArrayDAC(int *str, int iter_begin, int iter_end)
 }
 
 
-
-//dynamic programming
-int getMaxConsecutiveArrayDP(int *str, int lenght, int start_pos, int end_pos)
+//dynamic programming || greedy
+#define MAX(x, y) ((x) > (y) ? (x) : (y))
+int getMaxConsecutiveArrayDP(int *str, int length)
 {
+	int sum = INT_MIN;
+	int curSumMax = 0;
+	int i;
 	
+	for (i = 0; i < length; i++)
+	{
+		curSumMax = MAX(curSumMax, 0) + str[i];
+		sum = MAX(sum, curSumMax);
+	}
+
+	return sum;
 }
 
-//greedy
+
 
 int main()
 {
@@ -209,8 +224,10 @@ int main()
 	{
 		//sum = getMaxConsecutiveArrayBase(str[i], length[i], &start_pos, &end_pos);
 		//sum = getMaxConsecutiveArrayDAC(str[i], 0, length[i]-1);
-		sum = getMaxConsecutiveArrayDACWithPos(str[i], 0, length[i]-1, &start_pos, &end_pos);
-		printf("maxSum=%d [%d %d]", sum, start_pos, end_pos);
+		//sum = getMaxConsecutiveArrayDACWithPos(str[i], 0, length[i]-1, &start_pos, &end_pos);
+		sum = getMaxConsecutiveArrayDP(str[i], 0, length[i]-1);
+		printf("maxSum=%d", sum);
+		//printf("maxSum=%d [%d %d]", sum, start_pos, end_pos);
 		if(i != use_cnt-1)
 		{
 			printf("\n");
